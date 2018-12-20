@@ -1,0 +1,144 @@
+<p data-bind ="the_orange" id="orange" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_blue" id="blue" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_green" id="green" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_red" id="red" style="visibility:hidden; display:none;"></p>
+
+<h1 data-bind="title"></h1>
+<div>
+    <canvas id="canvas"></canvas>
+</div> 
+<script>
+    $( "#red" ).bind("DOMSubtreeModified", function() {
+        var orange = document.getElementById('orange').innerHTML;
+        var tab_orange = orange.split(",");
+        var blue = document.getElementById('blue').innerHTML;
+        var tab_blue = blue.split(",");
+        var green = document.getElementById('green').innerHTML;
+        var tab_green = green.split(",");
+        var red = document.getElementById('red').innerHTML;
+        var tab_red = red.split(",");
+
+        //console.log(tab_blue[0]);    
+        
+        var barChartData = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December'],
+            datasets: [{
+                label: 'Open and Closed',
+                backgroundColor: window.chartColors.blue,
+                stack: 'Stack 0',
+                data: [
+                    tab_blue[0],
+                    tab_blue[1],
+                    tab_blue[2],
+                    tab_blue[3],
+                    tab_blue[4],
+                    tab_blue[5],
+                    tab_blue[6],
+                    tab_blue[7],
+                    tab_blue[8],
+                    tab_blue[9],
+                    tab_blue[10],
+                    tab_blue[11]
+                ]
+            }, {
+                label: 'Open (not closed)',
+                backgroundColor: window.chartColors.orange,
+                stack: 'Stack 0',
+                data: [
+                    tab_orange[0],
+                    tab_orange[1],
+                    tab_orange[2],
+                    tab_orange[3],
+                    tab_orange[4],
+                    tab_orange[5],
+                    tab_orange[6],
+                    tab_orange[7],
+                    tab_orange[8],
+                    tab_orange[9],
+                    tab_orange[10],
+                    tab_orange[11]
+                ]
+            }, {
+                label: 'Resolved during the months, SLA OK',
+                backgroundColor: window.chartColors.green,
+                stack: 'Stack 1',
+                data: [
+                    tab_green[0],
+                    tab_green[1],
+                    tab_green[2],
+                    tab_green[3],
+                    tab_green[4],
+                    tab_green[5],
+                    tab_green[6],
+                    tab_green[7],
+                    tab_green[8],
+                    tab_green[9],
+                    tab_green[10],
+                    tab_green[11]
+                ]
+            }, {
+                label: 'Resolved during the months, SLA Missed',
+                backgroundColor: window.chartColors.red,
+                stack: 'Stack 1',
+                data: [
+                    tab_red[0],
+                    tab_red[1],
+                    tab_red[2],
+                    tab_red[3],
+                    tab_red[4],
+                    tab_red[5],
+                    tab_red[6],
+                    tab_red[7],
+                    tab_red[8],
+                    tab_red[9],
+                    tab_red[10],
+                    tab_red[11]
+                ]
+            }]
+
+        };
+        var ctx = document.getElementById('canvas').getContext('2d');
+        window.myBar = new Chart(ctx, {
+            type: 'bar',
+            data: barChartData,
+            options: {
+                plugins: {
+                    datalabels: {
+                        color: 'black'
+                    }
+                },
+                layout: {
+                    padding: {
+                        left: 50,
+                        right: 0,
+                        top: 0,
+                        bottom: 0
+                        }
+                },
+                title: {
+                    display: true,
+                    text: 'Number of tickets Open/Resolved',
+                    fontColor:'#FFFFFF',
+                    fontSize: 15
+                },            
+                legend: {
+                    display: true,
+                    labels: {
+                        fontColor: 'rgb(255, 255, 255)',
+                        fontSize: 13
+                    }
+                },
+                responsive: true,
+                scales: {                                  
+                    xAxes: [{                                
+                        stacked: true,                          
+                    }],
+                    yAxes: [{
+                        stacked: true,
+                        
+                    }]
+                }
+            }
+        });
+    });
+</script>

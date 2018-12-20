@@ -1,0 +1,79 @@
+<p data-bind ="the_classif_bf_nw" id="classif_bf_nw" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_classif_bf_w" id="classif_bf_w" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_classif_data_request" id="classif_data_request" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_classif_support" id="classif_support" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_classif_unknown" id="classif_unknown" style="visibility:hidden; display:none;"></p>
+
+<div id="classif_canvas" width="300" height="250">
+		<canvas id="chart_classif" width="300" height="250"></canvas>
+</div>
+<script>
+$( "#classif_unknown" ).bind("DOMSubtreeModified", function() {
+    var classif_bf_nw = document.getElementById('classif_bf_nw').innerHTML;
+    var classif_bf_w = document.getElementById('classif_bf_w').innerHTML;
+    var classif_data_request = document.getElementById('classif_data_request').innerHTML;
+    var classif_support = document.getElementById('classif_support').innerHTML;
+    var classif_unknown = document.getElementById('classif_unknown').innerHTML;
+         
+    var config = {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: [
+                    classif_bf_nw,
+                    classif_bf_w,
+                    classif_data_request,
+                    classif_support,
+                    classif_unknown
+                ],
+                backgroundColor: [
+                    window.chartColors.green,
+                    window.chartColors.orange,
+                    window.chartColors.red,
+                    window.chartColors.blue,
+                    window.chartColors.purple
+                ],
+                label: 'Dataset 1'
+            }],
+            labels: [
+                'BF No Warranty',
+                'BF Warranty',
+                'Data Request',
+                'Support',
+                'Unknown'
+            ]
+        },
+        options: {
+            plugins: {
+                datalabels: {
+                color: 'black'
+                }
+            },
+            responsive: true,
+            legend: {
+                display: true,
+                labels: {
+                    fontColor: 'rgb(255, 255, 255)',
+                    fontSize: 13
+                }
+            },
+            title: {
+                display: true,
+                text: 'Backlog Classification',
+                fontColor:'#FFFFFF',
+                fontSize: 15
+            },
+            animation: {
+                animateScale: true,
+                animateRotate: true
+            }
+        }
+    };
+           
+ 
+    var ctx = document.getElementById("chart_classif").getContext('2d');
+    window.myDoughnut = new Chart(ctx, config);          
+
+    
+});
+</script>

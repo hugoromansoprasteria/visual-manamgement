@@ -1,0 +1,69 @@
+#note date possible: M5, M7, M9, M10, M10a, M11, M12, M13, M14
+#refresh nomenclature: '30s' -> 30 secondes/ '10m' -> 10 minutes/ '2h' -> 2 heures
+#as_id is used for URL access
+#name is title of html page
+#service is the value of Semaphore as service
+#resolver is the value of Semaphore as resolver group
+#  - url_id: 'IPC_GAMS'
+#    title: 'IPC AUTHORING & GAMS'
+#    service_id: ('IPC_AUTHORING','GAMS')
+#    resolver_grp: ('AI.INC.ENG_MAINT.MATERIEL.L3.ALL','AI.INC.ENG_MAINT.AUTH_OPERATIONS.L3.ALL')
+
+gantt:
+  - gantt_id: 'gantt1'
+    bundle: ('ICD')
+    project: ('SRM ident','IPCA','GAMS','IWDS')
+    date_start: 'M7'
+    date_progress: 'M10'
+    date_end: 'M10'
+refresh: '60m'
+
+as:
+  - url_id: 'IPC'               
+    title: 'IPC Authoring'
+    service_id: ('IPC_AUTHORING')
+    resolver_grp: ('AI.INC.ENG_MAINT.MATERIEL.L3.ALL')
+  - url_id: 'GAMS'
+    title: 'GAMS'
+    service_id: ('GAMS')
+    resolver_grp: ('AI.INC.ENG_MAINT.AUTH_OPERATIONS.L3.ALL')
+  - url_id: 'IPC_GAMS'
+    title: 'IPC AUTHORING & GAMS'
+    service_id: ('IPC_AUTHORING','GAMS')
+    resolver_grp: ('AI.INC.ENG_MAINT.MATERIEL.L3.ALL','AI.INC.ENG_MAINT.AUTH_OPERATIONS.L3.ALL')
+  - url_id: 'CDIS'
+    title: 'CDIS'
+    service_id: ('CDIS')
+    resolver_grp: ('AI.INC.FCOR.CUSTOMER.L3.ALL')
+  - url_id: 'FULL'
+    title: 'Tech data applications'
+    service_id: 
+    resolver_grp:
+  - url_id: 'FAIR_MAT'
+    title: 'FAIR & MAT'
+    service_id: ('FAIR','MAT')
+    resolver_grp: ('AI.INC.FCOR.IN_SERVICE_AC.L3.ALL')
+  - url_id: 'IWDS'
+    title: 'IWDS'
+    service_id: ('IWDS')
+    resolver_grp: ('AI.INC.ENG_MAINT.AUTH_OPERATIONS.L3.ALL')
+  - url_id: 'RMT'
+    title: 'RMT'
+    service_id: ('RMT')
+    resolver_grp: ('AI.INC.ENG_MAINT.AUTH_OPERATIONS.L3.ALL')
+  - url_id: 'SRM_IDENT'
+    title: 'SRM Ident'
+    service_id: ('SRM_IDENT')
+    resolver_grp: ('AI.INC.ENG_MAINT.MAINT_REPAIR_EDPS.L3.ALL')
+  - url_id: 'SRM_TEXT'
+    title: 'SRM Text'
+    service_id: ('EDPS')
+    resolver_grp: ('AI.INC.ENG_MAINT.MAINT_REPAIR_EDPS.L3.ALL')
+  - url_id: 'SINEO'
+    title: 'SINEO'
+    service_id: ('SRM_IDENT')
+    resolver_grp: ('AI.INC.ENG_MAINT.MAINT_REPAIR.SINEO.L2.ALL')
+  - url_id: 'full'
+    title: 'Tech data applications'
+    service_id: 
+    resolver_grp:

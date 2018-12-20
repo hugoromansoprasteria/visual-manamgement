@@ -1,0 +1,36 @@
+Command line instructions
+
+Git global setup
+git config --global user.name "ROMAN Hugo"
+git config --global user.email "hugo.roman@soprasteria.com"
+
+Create a new repository
+git clone https://innersource.soprasteria.com/hugo.roman/test.git
+cd test
+touch README.md
+git add README.md
+git commit -m "add README"
+git push -u origin master
+
+Existing folder
+cd existing_folder
+git init
+git remote add origin https://innersource.soprasteria.com/hugo.roman/test.git
+git add .
+git commit -m "Initial commit"
+git push -u origin master
+
+Existing Git repository
+cd existing_repo
+git remote rename origin old-origin
+git remote add origin https://innersource.soprasteria.com/hugo.roman/test.git
+git push -u origin --all
+git push -u origin --tags
+
+Smashing
+cd .\Sources\
+smashing start
+
+URL:
+http://127.0.0.1:3030/as_resolved?project=IPC
+http://127.0.0.1:3030/as_backlog?project=IPC

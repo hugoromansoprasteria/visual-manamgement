@@ -1,0 +1,105 @@
+<canvas id="chart-support-current-area" width="300" height="250"></canvas>
+<!--
+<p data-bind ="the_batch" id="batch" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_issue1" id="issue1" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_issue2" id="issue2" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_issue3" id="issue3" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_program" id="program" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_root" id="root" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_spec" id="spec" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_user1" id="user1" style="visibility:hidden; display:none;"></p>
+<p data-bind ="get_previous_month" id="previous_month" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_user2" id="user2" style="visibility:hidden; display:none;"></p>
+
+<div id="canvas-holder" width="300" height="250">
+		<canvas id="chart-support" width="300" height="250"></canvas>
+</div>
+<script>
+    $( "#user2" ).bind("DOMSubtreeModified", function() {
+        var previous_month = Number(document.getElementById('previous_month').innerHTML);
+        var batch = document.getElementById('batch').innerHTML;
+        var issue1 = document.getElementById('issue1').innerHTML;
+        var issue2 = document.getElementById('issue2').innerHTML;
+        var issue3 = document.getElementById('issue3').innerHTML;
+        var program = document.getElementById('program').innerHTML;
+        var root= document.getElementById('root').innerHTML;
+        var spec = document.getElementById('spec').innerHTML;
+        var user1 = document.getElementById('user1').innerHTML;
+        var user2 = document.getElementById('user2').innerHTML;
+
+        var config = {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [
+                        batch,
+                        issue1,
+                        issue2,
+                        issue3,
+                        program,
+                        root,
+                        spec,
+                        user1,
+                        user2
+                    ],
+                    backgroundColor: [
+                        window.chartColors.green,
+                        window.chartColors.orange,
+                        window.chartColors.red,
+                        window.chartColors.blue,
+                        window.chartColors.purple,
+                        window.chartColors.yellow,
+                        window.chartColors.grey,
+                        window.chartColors.pink,
+                        window.chartColors.cyan,
+
+                    ],
+                    label: 'Dataset 1'
+                }],
+                labels: [
+                    'Batch Scheduling',
+                    'Issue -> batch/infra',
+                    'Issue -> app/data N-IC',
+                    'Issue -> other app',
+                    'Program config. MGT',
+                    'Root cause unknown',
+                    'Spec. doesnt fit B-R',
+                    'User How Do I',
+                    'User Wrong App Use'
+                ]
+            },
+            options: {
+                plugins: {
+                datalabels: {
+                    color: 'black'
+                    }
+                },
+                responsive: true,
+                legend: {
+                    display: true,
+                    position: 'right',
+                    labels: {
+                        fontColor: 'rgb(255, 255, 255)',
+                        boxWidth: 10,
+                        fontSize: 13
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'Focus Support for ' + getMonthName(previous_month),
+                    fontColor:'#FFFFFF',
+                    fontSize: 15
+                },
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
+                }
+            }
+        };      
+                 
+        var ctx = document.getElementById('chart-support').getContext('2d');
+        window.myDoughnut = new Chart(ctx, config);
+    
+    });
+</script>
+-->

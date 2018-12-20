@@ -1,0 +1,15 @@
+class Dashing.Priority extends Dashing.Widget
+
+	@accessor 'the_low', ->
+		low = @get('low')
+    
+	@accessor 'the_medium', ->
+		medium = @get('medium')
+# In red "the_service" is the name of the methode(getter) used if the HTML file to call the methode
+# In blue "service" is the variable returned by the getter'
+#@get('service') is used to recieved the send_evend from the rb job
+	@accessor 'the_service', -> 
+		service = @get('service')
+		
+	@accessor 'the_high', ->
+		high = @get('high')

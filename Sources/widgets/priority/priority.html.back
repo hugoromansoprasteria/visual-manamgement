@@ -1,0 +1,68 @@
+ <p data-bind ="the_low" id="low" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_medium" id="medium" style="visibility:hidden; display:none;"></p>
+<!-- <p data-bind ="the_service" id="service" style="visibility:hidden; display:none;"></p> -->
+<p data-bind ="the_high" id="high" style="visibility:hidden; display:none;"></p>
+
+<div id="canvas-priority" width="300" height="250">
+       	<canvas id="chart-priority-area" width="300" height="250"></canvas>
+</div>
+<script>
+    $( "#high" ).bind("DOMSubtreeModified", function() {
+        //var service = document.getElementById('service').innerHTML;     
+        var low = document.getElementById('low').innerHTML;
+        var medium = document.getElementById('medium').innerHTML;
+        var high = document.getElementById('high').innerHTML; 
+        var config = {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [
+                        high,
+                        medium,
+                        low,
+                    ],
+                    backgroundColor: [
+                        window.chartColors.red,
+                        window.chartColors.orange,
+                        window.chartColors.green,
+                    ],
+                    label: 'Dataset 1'
+                }],
+                labels: [
+                    'High',
+                    'Medium',
+                    'Low'
+                ]
+            },
+            options: {
+                plugins: {
+                datalabels: {
+                    color: 'black'
+                    }
+                },
+                responsive: true,
+                legend: {
+                    display: true,
+                    labels: {
+                        fontColor: 'rgb(255, 255, 255)',
+                        fontSize: 13
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'Backlog Priority',
+                    fontColor:'#FFFFFF',
+                    fontSize: 15           
+                },
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
+                }
+            }
+        };
+               
+        var ctx = document.getElementById('chart-priority-area').getContext('2d');
+        window.myDoughnut = new Chart(ctx, config);
+        
+    });
+</script>

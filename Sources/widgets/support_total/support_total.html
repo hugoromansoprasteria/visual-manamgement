@@ -1,0 +1,102 @@
+<canvas id="chart-support-total-area" width="300" height="250"></canvas>
+
+<!--
+<p data-bind ="the_batch" id="batch_total" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_issue1" id="issue1_total" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_issue2" id="issue2_total" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_issue3" id="issue3_total" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_program" id="program_total" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_root" id="root_total" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_spec" id="spec_total" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_user1" id="user1_total" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_user2" id="user2_total" style="visibility:hidden; display:none;"></p>
+<div id="canvas-holder-support-total" width="300" height="250">
+		<canvas id="chart_support_total" width="300" height="250"></canvas>
+</div>
+<script>
+    $( "#user2_total" ).bind("DOMSubtreeModified", function() {
+        var batch = document.getElementById('batch_total').innerHTML;
+        var issue1 = document.getElementById('issue1_total').innerHTML;
+        var issue2 = document.getElementById('issue2_total').innerHTML;
+        var issue3 = document.getElementById('issue3_total').innerHTML;
+        var program = document.getElementById('program_total').innerHTML;
+        var root= document.getElementById('root_total').innerHTML;
+        var spec = document.getElementById('spec_total').innerHTML;
+        var user1 = document.getElementById('user1_total').innerHTML;
+        var user2 = document.getElementById('user2_total').innerHTML;
+        var config = {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [
+                        batch,
+                        issue1,
+                        issue2,
+                        issue3,
+                        program,
+                        root,
+                        spec,
+                        user1,
+                        user2
+                    ],
+                    backgroundColor: [
+                        window.chartColors.green,
+                        window.chartColors.orange,
+                        window.chartColors.red,
+                        window.chartColors.blue,
+                        window.chartColors.purple,
+                        window.chartColors.yellow,
+                        window.chartColors.grey,
+                        window.chartColors.pink,
+                        window.chartColors.cyan,
+
+                    ],
+                    label: 'Dataset 1'
+                }],
+                labels: [
+                    'Batch Scheduling',
+                    'Issue -> batch/infra',
+                    'Issue -> app/data N-IC',
+                    'Issue -> other app',
+                    'Program config. MGT',
+                    'Root cause unknown',
+                    'Spec. doesnt fit B-R',
+                    'User How Do I',
+                    'User Wrong App Use'
+                    ]
+            },
+            options: {
+                plugins: {
+                datalabels: {
+                    color: 'black'
+                    }
+                },
+                responsive: true,
+                legend: {
+                    display: true,
+                    position: 'right',
+                    labels: {
+                        fontColor: 'rgb(255, 255, 255)',
+                        boxWidth: 10,
+                        fontSize: 13
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'Focus Support in total',
+                    fontColor:'#FFFFFF',
+                    fontSize: 15
+                },
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
+                }
+            }
+        };      
+                 
+        var ctx = document.getElementById('chart_support_total').getContext('2d');
+        window.myDoughnut = new Chart(ctx, config);
+    
+    });
+</script>
+-->

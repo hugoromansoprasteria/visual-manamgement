@@ -1,0 +1,223 @@
+	<!-- Données bindées HTML -->
+
+	<h1 data-bind="title"></h1>
+
+	<p data-bind ="program_name" id="program" style="visibility:hidden; display:none;"></p>
+	<p data-bind ="task_id" id="name" style="visibility:hidden; display:none;"></p>
+	<p data-bind ="task_dates_start" id="start" style="visibility:hidden; display:none;"></p>
+	<p data-bind ="task_dates_progress" id="progress" style="visibility:hidden; display:none;"></p>
+	<p data-bind ="task_dates_end" id="end" style="visibility:hidden; display:none;"></p>
+
+
+	<div class="container">
+		<div class="gantt-target" id="gantt-target"></div>
+    </div>
+
+	<!-- Script Java -->
+
+	<script language="text/javascript">
+	$(document).ready(function() {
+
+		var tasks = [];
+		var names = [];
+
+		$( "#end" ).bind("DOMSubtreeModified", function() {
+			 
+			document.getElementById("gantt-target").innerHTML = ""; 
+			// Récupération des données, par Id, puis créer trois tableaux pour les 3 valeurs:
+			
+			// Nom de la tache: 
+
+			var taskcontent = document.getElementById('name').innerHTML;
+			var tab_content = taskcontent.split(","); // 1er tableau
+
+			
+			// Date de fin du projet
+
+			var end = document.getElementById('end').innerHTML;
+			var tab_end = end.split(","); // 2ème tableau
+			
+			// Date intermédiaire de projet
+
+			var progress = document.getElementById('progress').innerHTML;
+			var tab_progress = progress.split(","); // 3ème tableau
+			
+			// Date de début du projet 
+
+			var start = document.getElementById('start').innerHTML;
+			var tab_start = start.split(","); // 4ème tableau
+
+			// Nom du projet nécéssaire pour le changement de couleur
+
+			var program = document.getElementById('program').innerHTML;
+			var tab_program = program.split(","); // 5ème tableau
+			
+			// Convertir les variables réceptionnées en nombre de jours
+			
+			var date_today = new Date(); // Date du jour
+
+			//Déclaration des fonctions permettant de calculer la différence de jours entre deux dates
+			//Date début et date d'aujourd'hui 
+			function dateDiffStart(thedate,thestart){
+				var tmp = (date_today - date_start)/(24*3600*1000);
+				return tmp;
+			}
+			
+			//Date d'aujourd'hui et date de fin 
+			function dateDiffEnd(thedate,theend){
+				var tmp2 = (date_end - date_today)/(24*3600*1000);
+				return tmp2;
+			}
+
+			//Date d'aujourd'hui et date intermédiare
+			function dateDiffProgress(thedate, theprogress){
+				var tmp3 = (date_progress - date_today)/(24*3600*1000);
+				return tmp3;
+			}
+						
+			var names = new Array();
+			var tab_calcul = [];
+
+			// Boucle pour obtenir les dates de debut et date de fin en format date pour avoir une différence en milliseconde
+			// Et toute les dates non remplies initialisées au premier janvier 2000
+
+			for(var i= 0; i < tab_content.length; i++){
+
+				// Cast to Date
+				if(tab_start[i] == "" || tab_start[i] == undefined){
+					tab_start[i] = ('2000-01-01');
+				}
+				
+				if (tab_end[i] == "" || tab_end[i] == undefined){
+					tab_end[i] = ('2020-12-12');
+				}
+
+				if (tab_progress[i] == "" || tab_progress[i] == undefined){
+					tab_progress[i] = ('2020-12-12');//tab_end[i];
+				}
+
+				if ((tab_start[i] == "" || tab_start[i] == undefined) && (tab_end[i] == "" || tab_end[i] == undefined) && (tab_progress[i] == "" || tab_progress[i] == undefined)){
+					tab_start[i] = ('2000-01-01');
+					tab_end[i] = ('2020-12-12');
+					tab_progress[i] = ('2020-12-12');//tab_end[i];
+				}
+
+				console.log("start: " + tab_start[i]);
+				console.log("progress: " + tab_progress[i]);
+				console.log("end: " + tab_end[i]);
+
+				var date_start = new Date(tab_start[i].substring(0, 4),tab_start[i].substring(5, 7)-1,tab_start[i].substring(8, 10));
+				var date_progress = new Date(tab_progress[i].substring(0, 4),tab_progress[i].substring(5, 7)-1,tab_progress[i].substring(8, 10));
+				var date_end = new Date(tab_end[i].substring(0, 4),tab_end[i].substring(5, 7)-1,tab_end[i].substring(8, 10));
+				
+				// Compute date differential
+				var task_start= dateDiffStart(date_today, date_start);
+				var task_progress= dateDiffProgress(date_today, date_progress);
+				var task_end= dateDiffEnd(date_today,date_end); 
+
+				console.log ("dbt: " + task_start + " fin: " + task_end + " progress: " + task_progress);
+
+				// File table for Gantt
+				var content = tab_content[i];
+				var end = task_end;
+				var progress = task_progress;
+				var start = task_start;
+				var program = tab_program[i];
+				
+				// Petit cheat permettant de régler le détail des tâches n'ayant pas de dates de début
+				if(start >= 7){ 
+					start = 8;
+				}
+
+				// Créer pour que le nom de la tâche soit situé au milieu de la vue fixe Gantt
+
+				if(end >= 70){
+					end = 70;
+				}
+
+				if(progress >= end){
+					progress = end;
+				}
+				
+				//Remplissage du tableau
+
+				var calcul_progress;
+				
+				if (start <= 8 && start >= 0){
+					calcul_progress = (progress +start)*100/(end + start);
+				}
+				else{
+					calcul_progress = ((progress + Math.abs(start))*100)/(end + Math.abs(start));
+				}				
+				
+				if (calcul_progress >= 100){
+					calcul_progress=100;
+				}
+
+				tab_calcul[i]= calcul_progress;
+				console.log("calcul:  " + tab_calcul[i]);
+
+				var tab_time = new Array(-start,end);
+				var tab_tasks = new Array(content, tab_time,program);
+				console.log(tab_time);
+				names[i] = tab_tasks;
+
+				
+			}
+
+			var tab_color = new Array("bar-milestone1","bar-milestone2","bar-milestone3","bar-milestone4","bar-milestone5","bar-milestone6","bar-milestone7","bar-milestone8","bar-milestone9","bar-milestone10","bar-milestone11","bar-milestone12","bar-milestone13","bar-milestone14","bar-milestone15","bar-milestone16","bar-milestone17","bar-milestone18","bar-milestone19","bar-milestone20","bar-milestone21","bar-milestone22","bar-milestone23","bar-milestone24","bar-milestone25","bar-milestone_joker");
+			
+			
+			var tasks = names.map(function(name, i) {
+				var today = new Date();
+				var start = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+				var end = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+				start.setDate(today.getDate() + name[1][0]);
+				end.setDate(today.getDate() + name[1][1]);
+				var program = name[2];
+				var index = tab_program.indexOf(program);
+				var the_class;
+				if (index != -1){
+					the_class = tab_color[index];
+				}
+				else{
+					the_class = "bar-milestone9";
+				}
+				if (index > 25){
+					the_class = "bar-milestone9";
+				}
+				var the_progress;
+				the_progress = tab_calcul[i];
+				
+				console.log("program= " + program + " index= " + index + " the_class= " + the_class + "the_progress= " + the_progress);
+				return {
+					start: start,
+					end: end,
+					name: name[0],
+					id: "Task " + i,
+					progress: the_progress,
+					custom_class: the_class
+				}
+			});
+
+			var gantt_chart = new Gantt(".gantt-target", tasks, {
+				bar_corner_radius: 5,
+				view_mode: 'Week'
+			
+			});
+
+			var length = tab_content.length;
+			console.log("length: " + length);
+				if (length > 22){
+					$(".gantt-container").css('overflow', 'scroll');
+				}
+				else{
+					$(".gantt-container").css('overflow', 'hidden');
+					console.log("coucou");
+				}
+			
+		});
+
+	});
+
+	</script>

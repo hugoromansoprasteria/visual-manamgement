@@ -1,0 +1,88 @@
+
+<canvas id="chart-classif-previous-area" width="300" height="250"></canvas>
+<!--
+<p data-bind ="the_id" id="id_previous_chart" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_bf_nw" id="bf_previous_nw" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_bf_w" id="bf_previous_w" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_data_request" id="previous_data_request" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_support" id="previous_support" style="visibility:hidden; display:none;"></p>
+<p data-bind ="get_previous_month" id="previous_month" style="visibility:hidden; display:none;"></p>
+<p data-bind ="the_unknown" id="previous_unknown" style="visibility:hidden; display:none;"></p>
+
+<div id="canvas-holder-previous" width="300" height="250">
+		<canvas id="chart_previous_month" width="300" height="250"></canvas>
+</div>
+<script>
+$( "#previous_unknown" ).bind("DOMSubtreeModified", function() {
+    var previous_month = Number(document.getElementById('previous_month').innerHTML);
+    var id_chart = document.getElementById('id_previous_chart').innerHTML;
+    var bf_nw = document.getElementById('bf_previous_nw').innerHTML;
+    var bf_w = document.getElementById('bf_previous_w').innerHTML;
+    var data_request = document.getElementById('previous_data_request').innerHTML;
+    var support = document.getElementById('previous_support').innerHTML;
+    var unknown = document.getElementById('previous_unknown').innerHTML;
+         
+    var config = {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: [
+                    bf_nw,
+                    bf_w,
+                    data_request,
+                    support,
+                    unknown
+                ],
+                backgroundColor: [
+                    window.chartColors.green,
+                    window.chartColors.orange,
+                    window.chartColors.red,
+                    window.chartColors.blue,
+                    window.chartColors.purple
+                ],
+                label: 'Dataset 1'
+            }],
+            labels: [
+                'BF No Warranty',
+                'BF Warranty',
+                'Data Request',
+                'Support',
+                'Unknown'
+            ]
+        },
+        options: {
+            showAllTooltips: false,
+            responsive: true,
+            plugins: {
+                datalabels: {
+                color: 'black'
+                }
+            },
+            legend: {
+                display: true,
+                position: 'left', 
+                labels: {
+                    fontColor: 'rgb(255, 255, 255)',
+                    fontSize: 13
+                }
+            },
+            title: {
+                display: true,
+                text: 'Classification for ' + getMonthName(previous_month - 1),
+                fontColor:'#FFFFFF',
+                fontSize: 15
+            },
+            animation: {
+                animateScale: true,
+                animateRotate: true
+            }
+        }
+    };
+   
+ 
+    var ctx = document.getElementById("chart_previous_month").getContext('2d');
+    window.myDoughnut = new Chart(ctx, config);          
+    
+});
+</script>
+-->

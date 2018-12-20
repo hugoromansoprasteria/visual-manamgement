@@ -1,0 +1,32 @@
+<% content_for :title do %>AS resolved<% end %>
+    <script type='text/javascript'>
+      $(function() {
+      Dashing.widget_base_dimensions = [350, 350]
+      Dashing.numColumns = [4,4]
+      });
+    </script>
+      <div class="gridster">
+        <ul>
+          <li data-row="1" data-col="2" data-sizex="0.1" data-sizey="0.1">
+            <div data-id="service_resolved" data-view="Text_resolved"  ></div>
+          </li> 
+          <li data-row="1" data-col="2" data-sizex="1" data-sizey="1">
+            <div data-id="classif_previous_month" data-view="Tickets_Previous"></div>
+          </li>
+          <li data-row="2" data-col="2" data-sizex="1" data-sizey="1">
+            <div data-id="supp_previous_month" data-view="Support_Previous"></div>
+          </li>
+          <li data-row="1" data-col="3" data-sizex="1" data-sizey="1">
+            <div data-id="classif_current_month" data-view="Tickets"></div>
+          </li>
+          <li data-row="2" data-col="3" data-sizex="1" data-sizey="1">
+            <div data-id="supp_current_month" data-view="Support"></div>
+          </li>
+          <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+            <div data-id="classif_total" data-view="Tickets_Total"></div>
+          </li>
+          <li data-row="2" data-col="1" data-sizex="1" data-sizey="1">
+            <div data-id="supp_total" data-view="Support_Total"></div>
+          </li>
+        </ul>
+      </div>

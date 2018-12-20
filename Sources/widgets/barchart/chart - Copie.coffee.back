@@ -1,0 +1,14 @@
+class Dashing.Chart extends Dashing.Widget
+
+	@accessor 'the_orange', ->
+		the_orange = @get('orange')
+        
+	@accessor 'the_blue', ->
+		the_blue = @get('blue')
+		
+	@accessor 'the_red', ->
+		the_red = @get('red')
+        
+	@accessor 'the_green', ->
+		the_green = @get('green')
+

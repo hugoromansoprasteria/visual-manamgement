@@ -1,0 +1,26 @@
+<% content_for :title do %>AS backlog<% end %>
+<script type='text/javascript'>
+  $(function() {
+  Dashing.widget_base_dimensions = [350, 350]
+  Dashing.widget_margins = [1, 1]
+  });
+</script>
+  <div class="gridster">
+    <ul>
+      <li data-row="1" data-col="2" data-sizex="0.1" data-sizey="0.1">
+         <div data-id="service" data-view="Text"  ></div>
+      </li> 
+      <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+        <div data-id="priority" data-view="Priority"></div>
+      </li>
+      <li data-row="1" data-col="2" data-sizex="1" data-sizey="1">
+        <div data-id="status" data-view="Status"></div>
+      </li>
+      <li data-row="1" data-col="3" data-sizex="1" data-sizey="1">
+        <div data-id="classif" data-view="Classif"></div> 
+      </li>
+      <li data-row="2" data-col="1" data-sizex="3" data-sizey="1">
+        <div data-id="chart" data-view="Barchart"></div>
+      </li>
+    </ul>
+  </div>

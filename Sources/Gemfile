@@ -1,0 +1,17 @@
+source 'https://rubygems.org'
+
+gem 'smashing'
+gem 'tzinfo-data', platforms: [:x64_mingw, :mingw, :mswin]
+gem 'jira-ruby', :require => 'jira'
+gem 'net_http_ssl_fix', :require => 'net_http_ssl_fix'
+gem 'rake' 
+gem 'rspec' 
+gem 'kramdown'
+gem 'roo'
+gem 'roo-xls'
+gem 'creek'
+gem 'rubyXL'
+gem 'tiny_tds'
+gem 'sinatra_cyclist'
+## Remove this if you don't need a twitter widget.
+gem 'twitter', '>= 5.9.0'

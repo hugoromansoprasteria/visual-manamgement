@@ -1,0 +1,20 @@
+# In red "the_service" is the name of the methode(getter) used if the HTML file to call the methode
+# In blue "service" is the variable returned by the getter'
+#@get('service') is used to recieved the send_evend from the rb job
+
+class Dashing.Classif extends Dashing.Widget
+
+	@accessor 'the_classif_bf_nw', ->
+		classif_bf_nowarranty = @get('classif_bf_nowarranty')
+        
+	@accessor 'the_classif_bf_w', ->
+		classif_bf_warranty = @get('classif_bf_warranty')
+
+	@accessor 'the_classif_data_request', ->
+		classif_data_request = @get('classif_data_request')
+    
+	@accessor 'the_classif_support', ->
+		classif_support = @get('classif_support')
+    
+	@accessor 'the_classif_unknown', ->
+		classif_unknown = @get('classif_unknown')

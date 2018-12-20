@@ -1,0 +1,88 @@
+class Dashing.Status extends Dashing.Widget
+
+	@accessor 'the_in_progress', ->
+		in_progress = @get('in_progress')
+        
+	@accessor 'the_pending', ->
+		pending = @get('pending')
+
+	@accessor 'the_assigned', ->
+		assigned = @get('assigned')
+
+	ready: ->
+		@ctx = $("#chart-status-area")[0].getContext('2d')
+
+		@config = 
+  type: 'doughnut'
+  data:
+    datasets: [ {
+      data: [
+        @get('pending')
+        @get('in_progress')
+        @get('assigned')
+      ]
+      backgroundColor: [
+        window.chartColors.green
+        window.chartColors.orange
+        window.chartColors.red
+      ]
+      label: 'Dataset 1'
+    } ]
+    labels: [
+      'Pending'
+      'In Progress'
+      'Assigned'
+    ]
+  options:
+    plugins: datalabels: color: 'black'
+    responsive: true
+    legend:
+      display: true
+      labels:
+        fontColor: 'rgb(255, 255, 255)'
+        fontSize: 13
+    title:
+      display: true
+      text: 'Backlog Status'
+      fontColor: '#FFFFFF'
+      fontSize: 15
+    animation:
+      animateScale: true
+      animateRotate: true
+		###
+		@config = {
+	  type: 'doughnut'
+	  data:
+		datasets: [ {
+		  data: [
+			@get('pending')
+			@get('in_progress')
+			@get('assigned')
+		  ]
+		  backgroundColor: [
+			window.chartColors.green
+			window.chartColors.orange
+			window.chartColors.red
+		  ]
+		  label: 'Dataset 1'
+		} ]
+		labels: [
+		  'Pending'
+		  'In Progress'
+		  'Assigned'
+		]
+	   animation:
+        animateScale: true
+        animateRotate: true 
+      options:
+        plugins: datalabels: color: 'black'
+        responsive: true
+        legend:
+          display: true
+          labels:
+            fontColor: 'rgb(255, 255, 255)'
+            fontSize: 13
+       }
+	  ###
+		@myChart = new Chart(@ctx, @config);
+		@myChart.update()

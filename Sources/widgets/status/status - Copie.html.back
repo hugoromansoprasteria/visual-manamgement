@@ -1,0 +1,8 @@
+
+<canvas id="chart-status-area" width="300" height="250"></canvas>
+
+<script> 
+	var url_string = window.location.href;
+	var url = new URL(url_string);
+	var projectByUrl = url.searchParams.get("project");
+</script>
